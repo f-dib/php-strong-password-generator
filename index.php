@@ -21,7 +21,7 @@
         <form action="result.php" class="mb-5" method="GET">
             <label for="numberInput">Genera Password da un minimo di 8 a 20 caratteri:</label>
             <input type="number" id="numberInput" name="number" min="8" max="20" required><br><br>
-            <input type="submit" value="Genera">
+            <input class="bg-primary text-white rounded-4 px-2 py-1" type="submit" value="Genera">
         </form>
     </div>
 
