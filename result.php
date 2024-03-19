@@ -1,8 +1,21 @@
-<?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+<?php   
     
+    include __DIR__ . '/partials/logic.php';
+
+    $number = $_GET['number'];
+
+    session_start();
+
+
+    if ($number) {
+
+        $userPassword = rand_string($number);
+          
+        $_SESSION['userPassword'] = $userPassword;
+    
+        header('Location: ./result.php');
+
+    };
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +30,20 @@
 <body>
     
     <div class="container-xxl py-5 text-center">
-        <h1 class="text-primary mb-3">Password Generator</h1>
-        <form action="result.php" class="mb-5" method="GET">
-            <label for="numberInput">Genera Password da un minimo di 8 a 20 caratteri:</label>
-            <input type="number" id="numberInput" name="number" min="8" max="20" required><br><br>
-            <input type="submit" value="Genera">
-        </form>
+        <h1 class="text-primary mb-5">Ecco la tua password:</h1>
+
+        <div class="border border-1 border-black rounded-3">
+            <?php
+
+                if($_SESSION['userPassword']){
+                    echo "{$_SESSION['userPassword']}";
+                } else {
+                    header ('Location: ./index.php');
+                }
+
+            ?>
+        </div>
+        <div class="small text-danger">*Non condividerla mai con nessuno</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
